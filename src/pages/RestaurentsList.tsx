@@ -1,10 +1,10 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import './Tab1.css';
+import './restaurentsList.css';
 import List from '../components/List';
 import Button from '../components/Button';
 import { useHistory } from "react-router-dom";
 
-const Tab1: React.FC = () => {
+const RestaurentsList: React.FC = () => {
   const history = useHistory();
 
     const handleClick = ()=>{
@@ -28,4 +28,4 @@ const Tab1: React.FC = () => {
   );
 };
 
-export default Tab1;
+export default RestaurentsList;

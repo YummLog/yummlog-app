@@ -11,8 +11,8 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
+import RestaurentsList from './pages/RestaurentsList';
+import AddRestaurent from './pages/AddRestaurent';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -46,10 +46,10 @@ const App: React.FC = () => {
           <RestaurentContext >
             <>
           <Route exact path="/list-restaurent">
-            <Tab1 />
+            <RestaurentsList />
           </Route>
           <Route exact path="/create-restaurent">
-            <Tab2 />
+            <AddRestaurent />
           </Route>
           <Route exact path="/">
             <Redirect to="/list-restaurent" />

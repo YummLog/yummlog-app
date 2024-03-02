@@ -1,10 +1,12 @@
 import React,{useContext} from 'react'
 import { useForm } from "react-hook-form"
-import { IonInput, IonItem, IonList,IonDatetime, IonDatetimeButton, IonModal } from '@ionic/react';
+import { IonInput, IonItem, IonList,IonDatetime, IonDatetimeButton, IonModal, IonSelect, IonSelectOption } from '@ionic/react';
 import Button from './Button';
 import './form.css'
 import {Context as RestaurentContext} from '../contexts/restaurent';
 import { useHistory } from "react-router-dom";
+import { format } from "date-fns";
+import USAstates from '../utils/USAstates';
 
 interface FormData {
     restaurentName: string;
@@ -20,18 +22,17 @@ const Form = () => {
 
     const { register, handleSubmit, formState } = useForm<FormData>({
 		mode: "onTouched",
-		reValidateMode: "onChange"
+		reValidateMode: "onChange",
+        defaultValues: {
+            date: format(new Date(),'yyyy-MM-dd'),
+        },
 	})
     const onSubmit = (data: FormData) => {
-        // if(setRestaurents){
-        //     setRestaurents([...restaurents,data])
-        //     history?.push('/list-restaurent');
-        // }
-        // console.error('Could not set state')
-        console.log('data',data)
+        if(setRestaurents){
+            setRestaurents([...restaurents,data])
+            history?.push('/list-restaurent');
+        }
     }
-
-    console.log(formState)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -46,14 +47,26 @@ const Form = () => {
                 <IonInput label="City" {...register("city",{ required: true })}></IonInput>
             </IonItem>
             <IonItem>
-                <IonInput label="State" {...register("state",{ required: true })}></IonInput>
+                <IonSelect {...register("state",{ required: true })} label="State" placeholder='Select a state'>
+                    {USAstates.map((state,index)=><IonSelectOption value={state.value} key={index}>{state.name}</IonSelectOption>)}
+                </IonSelect>
             </IonItem>
             <IonItem>
                 <IonInput label="Date" className='date-time-input'>
                     <IonDatetimeButton datetime="datetime" ></IonDatetimeButton>
 
                     <IonModal keepContentsMounted={true}>
-                        <IonDatetime id="datetime" {...register("date")} ></IonDatetime>
+                        <IonDatetime 
+                            {...register("date")} 
+                            id="datetime" 
+                            presentation="date" 
+                            showDefaultButtons={true} 
+                            doneText="All set" 
+                            cancelText="Never mind"
+                            min={`${new Date().getFullYear()-2}`}
+                            max={`${new Date().getFullYear()+2}`}
+                            >
+                        </IonDatetime>
                     </IonModal>
                 </IonInput>
             </IonItem>

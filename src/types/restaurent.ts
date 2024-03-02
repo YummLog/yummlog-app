@@ -3,6 +3,7 @@ export interface Restaurent {
     address?: string;
     city: string;
     state: string;
+    date: string;
   }
 
 export interface RestaurentContextType {

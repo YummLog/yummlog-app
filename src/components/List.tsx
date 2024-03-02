@@ -15,7 +15,7 @@ const List = () => {
   return (
     <>
       {restaurents.map((restaurent,index)=>{
-        return (<IonCard color="danger" key={index}>
+        return (<IonCard color='light' key={index}>
         <IonCardHeader>
           <IonCardTitle>{restaurent?.restaurentName || 'No Title'}</IonCardTitle>
           <IonCardSubtitle>{restaurent?.city}, {restaurent?.state}</IonCardSubtitle>
@@ -24,18 +24,6 @@ const List = () => {
         <IonCardContent>{restaurent?.address}</IonCardContent>
         </IonCard>
         )})}
-      {/* <IonItem>
-        <IonLabel>Mega Man X</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>The Legend of Zelda</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Pac-Man</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Super Mario World</IonLabel>
-      </IonItem> */}
     </>
   );
 }

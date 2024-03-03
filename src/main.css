@@ -1,4 +1,6 @@
-body {
-    width: 500px;
-    left: 30%;
+@media only screen and (min-width: 769px){
+    body {
+        width: 500px;
+        left: 30%;
+    }
 }
